@@ -138,26 +138,26 @@ contract RaffleTest is Test {
         // Raffle.RaffleState rState = raffle.getRaffleState();
 
         // Act / Assert
-        // vm.expectRevert(
-        //     abi.encodeWithSelector(
-        //         Raffle.Raffle__UpkeepNotNeeded.selector,
-        //         currentBalance,
-        //         numPlayers,
-        //         raffleState
-        //     )
-        // );
-        // raffle.performUpkeep("");  
-
-        vm.expectRevert();
-            (bool revertAsExpected, ) = address(raffle).call(
-                abi.encodeWithSelector(
-                    Raffle.Raffle__UpkeepNotNeeded.selector,
-                    currentBalance,
-                    numPlayers,
-                    raffleState
-                )
+        vm.expectRevert(
+            abi.encodeWithSelector(
+                Raffle.Raffle__UpkeepNotNeeded.selector,
+                currentBalance,
+                numPlayers,
+                raffleState
+            )
         );
-        assert(revertAsExpected);  
+        raffle.performUpkeep("");  
+
+        // vm.expectRevert();
+        //     (bool revertAsExpected, ) = address(raffle).call(
+        //         abi.encodeWithSelector(
+        //             Raffle.Raffle__UpkeepNotNeeded.selector,
+        //             currentBalance,
+        //             numPlayers,
+        //             raffleState
+        //         )
+        // );
+        // assert(revertAsExpected);  
 
     }
 
